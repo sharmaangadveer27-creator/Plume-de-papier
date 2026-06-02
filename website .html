@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Plume de Papier | L'élégance des mots</title>
+  <!-- Google Fonts: elegant serif & clean sans-serif -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fefaf5;  /* soft paper tone */
+      font-family: 'Inter', sans-serif;
+      color: #2c2418;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* custom selection */
+    ::selection {
+      background: #d9c7ae;
+      color: #1e1912;
+    }
+
+    /* container utility */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Typography */
+    h1, h2, h3, .logo, .nav-links a, .hero-title, .section-title, .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #3e2c1f, #7f6142);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .section-title .subhead {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b48c5c;
+      margin-top: 0.5rem;
+      font-weight: 400;
+    }
+
+    /* Header & Nav */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      background: rgba(254, 250, 245, 0.92);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: #2b2a27;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      font-size: 2rem;
+      color: #b68b40;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #3a2c1e;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a:hover {
+      color: #b78c48;
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 5rem 0 6rem 0;
+      background: linear-gradient(145deg, #fff7ef 0%, #fef3e6 100%);
+      margin-bottom: 1rem;
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-title {
+      font-size: 4.2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 1.3rem;
+      color: #2a241c;
+    }
+
+    .hero-title span {
+      font-style: italic;
+      color: #b08048;
+      font-weight: 600;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #4f4436;
+      max-width: 550px;
+      margin-bottom: 2rem;
+      border-left: 3px solid #dfc9ab;
+      padding-left: 1.5rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.25s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: #2b241b;
+      color: #fef7ef;
+      border: 1px solid #2b241b;
+    }
+
+    .btn-primary:hover {
+      background: #5c432a;
+      border-color: #5c432a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #c7af8b;
+      color: #4a3922;
+    }
+
+    .btn-outline:hover {
+      background: #e2d1bc;
+      border-color: #b48a54;
+      transform: translateY(-2px);
+    }
+
+    .hero-illustration {
+      flex: 0.9;
+      text-align: center;
+    }
+
+    .hero-illustration i {
+      font-size: 14rem;
+      color: #e1c9aa;
+      filter: drop-shadow(6px 12px 18px rgba(0,0,0,0.05));
+      transition: transform 0.3s ease;
+    }
+
+    .hero-illustration i:hover {
+      transform: rotate(3deg) scale(1.02);
+    }
+
+    /* Featured / Services */
+    .features {
+      padding: 5rem 0;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      flex: 1;
+      min-width: 240px;
+      transition: all 0.3s;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0,0,0,0.03);
+      border: 1px solid #f0e5d8;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #e2cfb5;
+      box-shadow: 0 20px 30px -15px rgba(91, 64, 38, 0.08);
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      color: #b07d48;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .card p {
+      color: #5b4d3b;
+      font-size: 0.95rem;
+    }
+
+    /* About section (paper story) */
+    .about-section {
+      background: #fffaf3;
+      padding: 5rem 0;
+      border-top: 1px solid #f0e4d4;
+      border-bottom: 1px solid #f0e4d4;
+    }
+
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1.2;
+    }
+
+    .about-text h3 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 1rem;
+    }
+
+    .signature-line {
+      width: 70px;
+      height: 3px;
+      background: #cfb284;
+      margin: 1.5rem 0;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+      color: #3e3324;
+    }
+
+    .about-image {
+      flex: 0.8;
+      background: #ede0cf;
+      border-radius: 32px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 15px 30px -10px rgba(0,0,0,0.05);
+    }
+
+    .about-image i {
+      font-size: 8rem;
+      color: #a77c48;
+    }
+
+    /* quotes / testimonials */
+    .quotes {
+      padding: 5rem 0;
+      background: #fefaf5;
+    }
+
+    .quote-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .quote-card {
+      max-width: 320px;
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      padding: 2rem 1.5rem;
+      border-radius: 32px;
+      border: 1px solid #f5e9db;
+      transition: all 0.2s;
+    }
+
+    .quote-card i {
+      font-size: 2rem;
+      color: #dbbc8c;
+      margin-bottom: 1rem;
+    }
+
+    .quote-text {
+      font-size: 1.15rem;
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      color: #2f281e;
+    }
+
+    .quote-author {
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      color: #b48a54;
+    }
+
+    /* Newsletter & CTA */
+    .newsletter {
+      background: #f2e7db;
+      padding: 4rem 2rem;
+      border-radius: 48px;
+      margin: 3rem auto 5rem;
+      text-align: center;
+      max-width: 900px;
+    }
+
+    .newsletter h3 {
+      font-size: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 0.5rem;
+    }
+
+    .newsletter p {
+      margin-bottom: 1.5rem;
+      color: #4f3e2c;
+    }
+
+    .news-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .news-form input {
+      padding: 0.9rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #d6c4ae;
+      background: white;
+      width: 280px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .news-form input:focus {
+      border-color: #b58d5a;
+    }
+
+    .news-form button {
+      background: #2f281e;
+      border: none;
+      color: white;
+      padding: 0 2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .news-form button:hover {
+      background: #5c442b;
+    }
+
+    /* Footer */
+    footer {
+      background: #f0e8dd;
+      padding: 3rem 0 2rem;
+      border-top: 1px solid #e4d5c2;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .footer-brand .logo {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: #584836;
+      max-width: 240px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links div h4 {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #5c4a34;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #b27737;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 1.4rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      color: #735f44;
+      transition: 0.2s;
+    }
+
+    .social-icons a:hover {
+      color: #bb8a50;
+      transform: translateY(-2px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ddceba;
+      font-size: 0.8rem;
+      color: #7b684f;
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-links {
+        gap: 1.5rem;
+      }
+      .hero-illustration i {
+        font-size: 9rem;
+      }
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn {
+        text-align: center;
+      }
+      .news-form input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="navbar">
+        <a href="#" class="logo">
+          <i class="fas fa-feather-alt"></i> 
+          Plume de Papier
+        </a>
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#essence">L'essence</a></li>
+          <li><a href="#voix">Voix</a></li>
+          <li><a href="#contact">Échanges</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section (Accueil) -->
+    <section id="accueil" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">L'écriture <span>papier</span>,<br>la plume qui respire.</h1>
+          <div class="hero-desc">
+            Plume de Papier célèbre l'art de l'écriture manuscrite, la poésie du papier et la beauté des lettres sincères. 
+            Atelier d'inspiration, librairie d'émotions.
+          </div>
+          <div class="btn-group">
+            <a href="#" class="btn btn-primary">Explorer la collection</a>
+            <a href="#" class="btn btn-outline">Lire nos carnets</a>
+          </div>
+        </div>
+        <div class="hero-illustration">
+          <i class="fas fa-pen-fancy"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features / services (ce que nous offrons) -->
+    <section id="essence" class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>L'âme du papier</h2>
+          <div class="subhead">— gestes & matières —</div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-book-open"></i></div>
+            <h3>Carnets d'artistes</h3>
+            <p>Éditions limitées, papier vergé, reliure artisanale — des carnets qui deviennent des compagnons d'écriture.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-quill"></i></div>
+            <h3>Plumes & encres</h3>
+            <p>Sélection de plumes sergent-major, encres végétales et coffrets d'initiation à la calligraphie.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-leaf"></i></div>
+            <h3>Papeterie douce</h3>
+            <p>Papiers upcyclés, fibres de coton, notes parfumées à la lavande — l'écologie de l'écrit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / story : plume de papier concept -->
+    <section id="voix" class="about-section">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h3>Depuis la plume jusqu'au souffle</h3>
+          <div class="signature-line"></div>
+          <p><strong>Plume de Papier</strong> est né d'une passion : celle des mots tracés à la main, du froissement du papier, du rituel de l'encre qui sèche. Nous croyons que chaque lettre manuscrite porte une vibration unique.</p>
+          <p>Notre atelier parisien propose des carnets d'exception, des plumes d'artistes et des ateliers d'écriture pour tous ceux qui veulent ralentir et redécouvrir le geste.</p>
+          <p>Entre traditions d'encriers et modernité sensible, chaque objet raconte une histoire silencieuse.</p>
+          <a href="#" class="btn btn-outline" style="margin-top: 0.8rem;">Notre manifeste <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="about-image">
+          <i class="fas fa-feather-alt"></i>
+          <p style="margin-top: 1rem; font-style:italic; font-size:0.9rem;">« La plume est une aile déposée sur le papier. »</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspirational quotes / literary voices -->
+    <section class="quotes">
+      <div class="container">
+        <div class="section-title">
+          <h2>Échos de papier</h2>
+          <div class="subhead">— ce que les mots murmurent —</div>
+        </div>
+        <div class="quote-grid">
+          <div class="quote-card">
+            <i class="fas fa-quote-left"></i>
+            <div class="quote-text">"Le papier est le champ de la pensée; la plume, le soc qui l'ouvre."</div>
+            <div class="quote-author">— Christian Bobin</div>
+          </div>
+          <div class="quote-card">
+            <i class="fas fa-quote-left"></i>
+            <div class="quote-text">"Écrire à la main, c'est offrir son temps, son encre, son souffle à l'autre."</div>
+            <div class="quote-author">— Atelier Plume</div>
+          </div>
+          <div class="quote-card">
+            <i class="fas fa-quote-left"></i>
+            <div class="quote-text">"Un carnet, c'est un jardin secret que l'on peut toujours emporter."</div>
+            <div class="quote-author">— Anne F. (libraire)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter & inscription (call to gentle exchange) -->
+    <div class="container" id="contact">
+      <div class="newsletter">
+        <h3><i class="fas fa-envelope-open-text"></i> Recevoir la plume numérique</h3>
+        <p>Inspirations, nouvelles collections et invitations aux ateliers d'écriture. Une lettre douce chaque mois.</p>
+        <form class="news-form" id="subscribeForm">
+          <input type="email" placeholder="votre adresse email" id="emailInput" required>
+          <button type="submit" id="subBtn">S'abonner</button>
+        </form>
+        <p style="font-size: 0.75rem; margin-top: 1rem; opacity: 0.7;">Aucun spam, seulement des mots qui résonnent.</p>
+        <div id="formFeedback" style="margin-top: 12px; font-size: 0.9rem; color:#7a5a38;"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <i class="fas fa-feather-alt"></i> Plume de Papier
+          </div>
+          <p>Papeterie fine & atelier d'écriture – Paris, depuis 2019.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="Substack"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>Explorer</h4>
+            <ul>
+              <li><a href="#">Carnets</a></li>
+              <li><a href="#">Plumes & encriers</a></li>
+              <li><a href="#">Papiers rares</a></li>
+              <li><a href="#">Ateliers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>À propos</h4>
+            <ul>
+              <li><a href="#">Notre histoire</a></li>
+              <li><a href="#">La boutique</a></li>
+              <li><a href="#">Écrire ensemble</a></li>
+              <li><a href="#">Presse & contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Légal</h4>
+            <ul>
+              <li><a href="#">Mentions légales</a></li>
+              <li><a href="#">Confidentialité</a></li>
+              <li><a href="#">CGV</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2026 Plume de Papier – Tous droits réservés – L'élégance du geste, la douceur du papier.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simple feedback for newsletter demo (no backend) -->
+  <script>
+    (function() {
+      const form = document.getElementById('subscribeForm');
+      const emailInput = document.getElementById('emailInput');
+      const feedbackDiv = document.getElementById('formFeedback');
+
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = emailInput.value.trim();
+          if (!email || !email.includes('@') || !email.includes('.')) {
+            feedbackDiv.innerHTML = '<span style="color:#b1624b;">✧ Merci de renseigner une adresse email valide. ✧</span>';
+            return;
+          }
+          // simulate subscription success
+          feedbackDiv.innerHTML = '<span style="color:#8b6946;"><i class="fas fa-feather"></i> Merci, votre plume est inscrite. À très vite dans vos courriers ✨</span>';
+          emailInput.value = '';
+          setTimeout(() => {
+            feedbackDiv.innerHTML = '';
+          }, 5000);
+        });
+      }
+
+      // smooth anchor scrolling (optional but gentle)
+      document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElem = document.querySelector(targetId);
+          if (targetElem) {
+            e.preventDefault();
+            targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
